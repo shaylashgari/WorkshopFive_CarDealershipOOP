@@ -9,8 +9,7 @@ public class LeaseContract extends Contract {
     public LeaseContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSelected, int totalPrice, int monthlyPayment, double expectedEndingValue, double leaseFee) {
         super(dateOfContract, customerName, customerEmail, vehicleSelected, totalPrice, monthlyPayment);
         this.expectedEndingValue = vehicleSelected.getPrice()/2;
-        this.leaseFee = leaseFee;
-        //-> do the calculation... original cost *.07
+        this.leaseFee = vehicleSelected.getPrice()* 0.07;
 
 
     }
@@ -29,6 +28,22 @@ public class LeaseContract extends Contract {
 
     public void setLeaseFee(double leaseFee) {
         this.leaseFee = leaseFee;
+    }
+
+    @Override
+    public float getTotalPrice() {
+        // insert formula
+        return (float) (getMonthlyPayment()*36+leaseFee);
+    }
+
+    @Override
+    public float getMonthlyPayment() {
+        // insert formula, m=i(1
+        double p = expectedEndingValue;
+        double i = 0.04/12;
+        int n = 36;
+        return (float) ((Math.pow(1+i,n)*i)/(Math.pow(1+i,n)-1) * p);
+
     }
 
     @Override

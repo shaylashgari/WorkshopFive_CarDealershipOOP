@@ -50,9 +50,17 @@ public class SalesContract extends Contract{
 
     @Override
     public float getMonthlyPayment() {
-        return monthlyPayment;
+        // monthly payment method, nested if else statement
+        if (finance)
+
     }
 
+    @Override
+    public float getTotalPrice(){
+        // nested if else statement producing what the total price would look like for finance or sale
+
+
+    }
     public void setMonthlyPayment(float monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
     }
